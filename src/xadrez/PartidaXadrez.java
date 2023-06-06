@@ -13,15 +13,16 @@ public class PartidaXadrez {
 		tabuleiro = new Tabuleiro(8, 8);
 		inicioPartida();
 	}
-	public PecaXadrez[][] getPecas(){
-		PecaXadrez [][] matrix = new PecaXadrez[tabuleiro.getLinha()][tabuleiro.getColuna()];
-		for (int i = 0; i < tabuleiro.getLinha(); i++) {
+
+	public PecaXadrez[][] getPecas() {
+		PecaXadrez[][] matriz = new PecaXadrez[tabuleiro.getLinhas()][tabuleiro.getColuna()];
+		for (int i = 0; i < tabuleiro.getLinhas(); i++) {
 			for (int j = 0; j < tabuleiro.getColuna(); j++) {
-				matrix[i][j] = (PecaXadrez)tabuleiro.peca(i, j);
+				matriz[i][j] = (PecaXadrez) tabuleiro.peca(i, j);
 			}
-			
+
 		}
-		return matrix;
+		return matriz;
 	}
 
 	private void inicioPartida() {
@@ -29,7 +30,5 @@ public class PartidaXadrez {
 		tabuleiro.pecaMovimentacao(new Rei(tabuleiro, Color.BLACK), new Posicao(0, 4));
 		tabuleiro.pecaMovimentacao(new Rei(tabuleiro, Color.WHITE), new Posicao(7, 4));
 	}
-	
-	
-	}
 
+}

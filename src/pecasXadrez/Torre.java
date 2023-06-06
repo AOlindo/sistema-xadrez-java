@@ -9,7 +9,8 @@ public class Torre extends PecaXadrez {
 	public Torre(Tabuleiro tabuleiro, Color color) {
 		super(tabuleiro, color);
 	}
-@Override
+
+	@Override
 	public String toString() {
 		return "T";
 	}
