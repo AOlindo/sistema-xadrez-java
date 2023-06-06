@@ -1,6 +1,5 @@
 package jogoDeTabuleiro;
 
-import exception.TabuleiroException;
 import xadrez.PecaXadrez;
 
 public class Tabuleiro {
