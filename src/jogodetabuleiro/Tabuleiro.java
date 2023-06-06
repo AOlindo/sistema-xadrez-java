@@ -1,4 +1,4 @@
-package jogodetabuleiro;
+package jogoDeTabuleiro;
 
 import xadrez.PecaXadrez;
 
@@ -29,10 +29,18 @@ public class Tabuleiro {
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
-	public Peca peca (int linha,  int coluna ) {
-		return pecas[linha] [coluna];
+
+	public Peca peca(int linha, int coluna) {
+		return pecas[linha][coluna];
 	}
-	public Peca peca (Posicao posicao) {
-		return pecas [posicao.getLinha()] [posicao.getColuna()];
+
+	public Peca peca(Posicao posicao) {
+		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
+
+	public void pecaMovimentacao(Peca peca, Posicao posicao) {
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		peca.posicao = posicao;
+	}
+
 }
