@@ -10,7 +10,7 @@ public class Tabuleiro {
 
 	public Tabuleiro(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
-			throw new TabuleiroException("Erro criando tabuleiro: é necessario que haja pelo menos 1 linha e 1 coluna");
+			throw new TabuleiroException("Erro criando tabuleiro: e necessario que haja pelo menos 1 linha e 1 coluna");
 		}
 		this.linhas = linhas;
 		this.colunas = colunas;
@@ -27,21 +27,21 @@ public class Tabuleiro {
 
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExiste(linha, coluna)) {
-			throw new TabuleiroException("Posicão não existe no tabuleiro");
+			throw new TabuleiroException("Posicao nao existe no tabuleiro");
 		}
 		return pecas[linha][coluna];
 	}
 
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posicão não existe no tabuleiro");
+			throw new TabuleiroException("Posicao nao existe no tabuleiro");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 
 	public void pecaMovimentacao(Peca peca, Posicao posicao) {
 		if (temUmaPeca(posicao)) {
-			throw new TabuleiroException("Já existe uma peça na posicão " + posicao);
+			throw new TabuleiroException("Ja existe uma peca na posicao " + posicao);
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
@@ -50,7 +50,7 @@ public class Tabuleiro {
 	public Peca removerPeca(Posicao posicao) {
 		// Se essa posicao não existe, lançar uma exception.
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posicão não existe no tabuleiro");
+			throw new TabuleiroException("Posicao nao existe no tabuleiro");
 		}
 		// se a peca no tabuleiro for igual a null
 		if (peca(posicao) == null) {
@@ -78,7 +78,7 @@ public class Tabuleiro {
 	// Verificar se tem uma peca na posicao//
 	public boolean temUmaPeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posicão não existe no tabuleiro");
+			throw new TabuleiroException("Posicao nao existe no tabuleiro");
 		}
 		return peca(posicao) != null;
 	}
