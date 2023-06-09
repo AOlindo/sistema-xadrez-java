@@ -26,26 +26,31 @@ public class PartidaXadrez {
 		}
 		return matriz;
 	}
-	public PecaXadrez moverPecaXadrez (PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino ) {
+
+	public PecaXadrez moverPecaXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
 		Posicao origem = posicaoOrigem.toPosicao();
 		Posicao destino = posicaoDestino.toPosicao();
 		validarPosicaoOrigem(origem);
 		Peca capturarPeca = moverPeca(origem, destino);
 		return (PecaXadrez) capturarPeca;
-		
+
 	}
-	
-	private Peca moverPeca (Posicao origem, Posicao destino) {
+
+	private Peca moverPeca(Posicao origem, Posicao destino) {
 		Peca p = tabuleiro.removerPeca(origem);
-		Peca capturarPeca = tabuleiro.removerPeca(destino);	
+		Peca capturarPeca = tabuleiro.removerPeca(destino);
 		tabuleiro.pecaMovimentacao(p, destino);
 		return capturarPeca;
 	}
-	
-	private void validarPosicaoOrigem (Posicao posicao) {
-		//se não existir uma peça nesta posição
+
+	private void validarPosicaoOrigem(Posicao posicao) {
+		// se não existir uma peça nesta posição
 		if (!tabuleiro.temUmaPeca(posicao)) {
 			throw new XadrezException("Nao existe peca na posicao de origem");
+		}
+		// se não tiver nenhum movimento possivel
+		if (!tabuleiro.peca(posicao).temAlgumMovimentoPossivel()) {
+			throw new XadrezException("Nao existe movimentos possiveis para a peca escolhida");
 		}
 	}
 
