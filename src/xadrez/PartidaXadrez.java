@@ -9,11 +9,23 @@ import pecasXadrez.Torre;
 
 public class PartidaXadrez {
 
+	private int vez;
+	private Color jogadorAtual;
 	private Tabuleiro tabuleiro;
 
 	public PartidaXadrez() {
 		tabuleiro = new Tabuleiro(8, 8);
+		vez = 1;
+		jogadorAtual = Color.WHITE;
 		inicioPartida();
+	}
+
+	public int getVez() {
+		return vez;
+	}
+
+	public Color getJogadorAtual() {
+		return jogadorAtual;
 	}
 
 	public PecaXadrez[][] getPecas() {
@@ -26,53 +38,56 @@ public class PartidaXadrez {
 		}
 		return matriz;
 	}
-	
-	public boolean [][] possiveisMovimentacoes(PosicaoXadrez posicaoOrigem){
+	public boolean[][] possiveisMovimentacoes(PosicaoXadrez posicaoOrigem) {
 		Posicao posicao = posicaoOrigem.toPosicao();
 		validarPosicaoOrigem(posicao);
 		return tabuleiro.peca(posicao).possiveisMovimentacoes();
 	}
-
 	public PecaXadrez moverPecaXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
 		Posicao origem = posicaoOrigem.toPosicao();
 		Posicao destino = posicaoDestino.toPosicao();
 		validarPosicaoOrigem(origem);
 		ValidarPosicaoDestino(origem, destino);
 		Peca capturarPeca = moverPeca(origem, destino);
+		proximoTurno();
 		return (PecaXadrez) capturarPeca;
-
 	}
-
 	private Peca moverPeca(Posicao origem, Posicao destino) {
 		Peca p = tabuleiro.removerPeca(origem);
 		Peca capturarPeca = tabuleiro.removerPeca(destino);
 		tabuleiro.pecaMovimentacao(p, destino);
 		return capturarPeca;
 	}
-
 	private void validarPosicaoOrigem(Posicao posicao) {
 		// se não existir uma peça nesta posição
 		if (!tabuleiro.temUmaPeca(posicao)) {
 			throw new XadrezException("Nao existe peca na posicao de origem");
+		}
+		if (jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getColor()) {
+			throw new XadrezException("A peca escolhida nao e sua");
 		}
 		// se não tiver nenhum movimento possivel
 		if (!tabuleiro.peca(posicao).temAlgumMovimentoPossivel()) {
 			throw new XadrezException("Nao existe movimentos possiveis para a peca escolhida");
 		}
 	}
-	
 	private void ValidarPosicaoDestino(Posicao origem, Posicao destino) {
-		//se pra peça de origem, a posicao de destino não é um movimento possível, significa que não pode mover para o destino.
-		if(!tabuleiro.peca(origem).possivelMovimento(destino)) {
+		// se pra peça de origem, a posicao de destino não é um movimento possível,
+		// significa que não pode mover para o destino.
+		if (!tabuleiro.peca(origem).possivelMovimento(destino)) {
 			throw new XadrezException("A peca escolhida nao pode se mover para posicao de destino");
 		}
 	}
-
+	private void proximoTurno () {
+		vez++;
+		//Se jogador atual for igual ao color.white, então agora ele vai ser color.black, caso contrario vai ser o color.white
+		//Condição ternaria. Mesma coisa do If/Else.
+		jogadorAtual = (jogadorAtual == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
 	private void novaPeca(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.pecaMovimentacao(peca, new PosicaoXadrez(coluna, linha).toPosicao());
 
 	}
-
 	private void inicioPartida() {
 
 		novaPeca('c', 1, new Torre(tabuleiro, Color.WHITE));
