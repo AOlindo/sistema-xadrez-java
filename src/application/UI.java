@@ -72,7 +72,7 @@ public class UI {
 
 	private static void printPeca(PecaXadrez peca, boolean fundoTela) {
 		if(fundoTela) {
-			System.out.print(ANSI_BLUE_BACKGROUND);
+			System.out.print(ANSI_RED_BACKGROUND);
 		}
 		if (peca == null) {
 			System.out.print("-" + ANSI_RESET);
