@@ -6,20 +6,24 @@ import jogoDeTabuleiro.Tabuleiro;
 
 public abstract class PecaXadrez extends Peca {
 
-	private Color color;
+	private Color cor;
 
 	public PecaXadrez(Tabuleiro tabuleiro, Color color) {
 		super(tabuleiro);
-		this.color = color;
+		this.cor = color;
 	}
 
-	public Color getColor() {
-		return color;
+	public Color getCor() {
+		return cor;
+	}
+	
+	public PosicaoXadrez getPosicaoXadrez() {
+		return PosicaoXadrez.daPosicao(posicao);
 	}
 	
 	protected boolean temUmaPecaAdversaria(Posicao posicao) {
 		PecaXadrez p = (PecaXadrez) getTabuleiro().peca(posicao);
-		return p != null && p.getColor() != color;
+		return p != null && p.getCor() != cor;
 	}
 
 }
