@@ -18,38 +18,36 @@ public class Programa {
 		PartidaXadrez partidaXadrez = new PartidaXadrez();
 		List<PecaXadrez> capturada = new ArrayList<>();
 
-		while (true) {
+		while (!partidaXadrez.getCheckMate()) {
 			try {
 				UI.limparTela();
 				UI.printMatch(partidaXadrez, capturada);
 				System.out.println();
 				System.out.print("Origem: ");
 				PosicaoXadrez origem = UI.leituraPosicaoXadrez(sc);
-				
-				boolean [] [] possiveisMovimentacoes = partidaXadrez.possiveisMovimentacoes(origem);
+
+				boolean[][] possiveisMovimentacoes = partidaXadrez.possiveisMovimentacoes(origem);
 				UI.limparTela();
 				UI.printTabuleiro(partidaXadrez.getPecas(), possiveisMovimentacoes);
 				System.out.println();
 				System.out.print("Destino: ");
 				PosicaoXadrez destino = UI.leituraPosicaoXadrez(sc);
-				
-				
+
 //Sempre que movimentar uma peca e a mesma for capturada (entra no if)
 				PecaXadrez pecaCapturada = partidaXadrez.moverPecaXadrez(origem, destino);
-				
-				if(pecaCapturada != null) {
+
+				if (pecaCapturada != null) {
 					capturada.add(pecaCapturada);
 				}
-			} 
-			catch (XadrezException e) {
+			} catch (XadrezException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
-			} 
-			catch (InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
 		}
-
+		UI.limparTela();
+		UI.printMatch(partidaXadrez, capturada);
 	}
 }
