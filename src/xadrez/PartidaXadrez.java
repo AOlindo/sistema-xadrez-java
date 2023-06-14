@@ -10,6 +10,7 @@ import jogoDeTabuleiro.Tabuleiro;
 import pecasXadrez.Bispo;
 import pecasXadrez.Cavalo;
 import pecasXadrez.Peao;
+import pecasXadrez.Rainha;
 import pecasXadrez.Rei;
 import pecasXadrez.Torre;
 
@@ -214,6 +215,7 @@ public class PartidaXadrez {
 		novaPeca('a', 1, new Torre(tabuleiro, Color.BRANCO));
 		novaPeca('b', 1, new Cavalo(tabuleiro, Color.BRANCO));
 		novaPeca('c', 1, new Bispo(tabuleiro, Color.BRANCO));
+		novaPeca('d', 1, new Rainha(tabuleiro, Color.BRANCO));
 		novaPeca('e', 1, new Rei(tabuleiro, Color.BRANCO));
 		novaPeca('f', 1, new Bispo(tabuleiro, Color.BRANCO));
 		novaPeca('g', 1, new Cavalo(tabuleiro, Color.BRANCO));
@@ -230,6 +232,7 @@ public class PartidaXadrez {
 		novaPeca('a', 8, new Torre(tabuleiro, Color.PRETO));
 		novaPeca('b', 8, new Cavalo(tabuleiro, Color.PRETO));
 		novaPeca('c', 8, new Bispo(tabuleiro, Color.PRETO));
+		novaPeca('d', 8, new Rainha(tabuleiro, Color.PRETO));
 		novaPeca('e', 8, new Rei(tabuleiro, Color.PRETO));
 		novaPeca('f', 8, new Bispo(tabuleiro, Color.PRETO));
 		novaPeca('g', 8, new Cavalo(tabuleiro, Color.PRETO));
