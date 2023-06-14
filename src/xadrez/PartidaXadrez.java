@@ -2,15 +2,12 @@ package xadrez;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import jogoDeTabuleiro.Peca;
 import jogoDeTabuleiro.Posicao;
 import jogoDeTabuleiro.Tabuleiro;
-import jogoDeTabuleiro.TabuleiroException;
+import pecasXadrez.Bispo;
 import pecasXadrez.Peao;
 import pecasXadrez.Rei;
 import pecasXadrez.Torre;
@@ -90,7 +87,7 @@ public class PartidaXadrez {
 	}
 
 	private Peca moverPeca(Posicao origem, Posicao destino) {
-		PecaXadrez peca = (PecaXadrez)tabuleiro.removerPeca(origem);
+		PecaXadrez peca = (PecaXadrez) tabuleiro.removerPeca(origem);
 		peca.aumentarContagem();
 		Peca capturarPeca = tabuleiro.removerPeca(destino);
 		tabuleiro.pecaMovimentacao(peca, destino);
@@ -214,7 +211,9 @@ public class PartidaXadrez {
 	private void inicioPartida() {
 
 		novaPeca('a', 1, new Torre(tabuleiro, Color.BRANCO));
+		novaPeca('c', 1, new Bispo(tabuleiro, Color.BRANCO));
 		novaPeca('e', 1, new Rei(tabuleiro, Color.BRANCO));
+		novaPeca('f', 1, new Bispo(tabuleiro, Color.BRANCO));
 		novaPeca('h', 1, new Torre(tabuleiro, Color.BRANCO));
 		novaPeca('a', 2, new Peao(tabuleiro, Color.BRANCO));
 		novaPeca('b', 2, new Peao(tabuleiro, Color.BRANCO));
@@ -224,9 +223,11 @@ public class PartidaXadrez {
 		novaPeca('f', 2, new Peao(tabuleiro, Color.BRANCO));
 		novaPeca('g', 2, new Peao(tabuleiro, Color.BRANCO));
 		novaPeca('h', 2, new Peao(tabuleiro, Color.BRANCO));
-		
+
 		novaPeca('a', 8, new Torre(tabuleiro, Color.PRETO));
+		novaPeca('c', 8, new Bispo(tabuleiro, Color.PRETO));
 		novaPeca('e', 8, new Rei(tabuleiro, Color.PRETO));
+		novaPeca('f', 8, new Bispo(tabuleiro, Color.PRETO));
 		novaPeca('h', 8, new Torre(tabuleiro, Color.PRETO));
 		novaPeca('a', 7, new Peao(tabuleiro, Color.PRETO));
 		novaPeca('b', 7, new Peao(tabuleiro, Color.PRETO));
@@ -236,7 +237,7 @@ public class PartidaXadrez {
 		novaPeca('f', 7, new Peao(tabuleiro, Color.PRETO));
 		novaPeca('g', 7, new Peao(tabuleiro, Color.PRETO));
 		novaPeca('h', 7, new Peao(tabuleiro, Color.PRETO));
-		
+
 	}
 
 }
