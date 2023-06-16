@@ -39,10 +39,15 @@ public class Programa {
 				if (pecaCapturada != null) {
 					capturada.add(pecaCapturada);
 				}
-				
-				if(partidaXadrez.getPromovido() != null) {
-					System.out.println("Peca para entrar na promocao (Torre/A(Rainha)/Bispo/Cavalo): ");
-					String tipo = sc.nextLine();
+
+				if (partidaXadrez.getPromovido() != null) {
+					System.out.println("Peca para entrar na promocao (Bispo/Cavalo/Torre/A(Rainha)): ");
+					String tipo = sc.nextLine().toUpperCase();
+					while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("R") && !tipo.equals("A")) {
+						System.out.println(
+								"Letra invalida! Digite novamente a peca para entrar na promocao (Bispo/Cavalo/Torre/A(Rainha)): ");
+						tipo = sc.nextLine().toUpperCase();
+					}
 					partidaXadrez.subsPecaPromovida(tipo);
 				}
 			} catch (XadrezException e) {
